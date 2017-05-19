@@ -1,0 +1,45 @@
+<form class="ui form">
+  <h4 class="ui dividing header">Farmácia</h4>
+  <div class="field">
+    <label>Farmácia</label>
+    <div class="two fields">
+      <div class="field">
+        <input type="text" name="farmacia" placeholder="Farmácia" [(ngModel)]="farmacia.nome" #farmacia="ngModel" >
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Endereço</label>
+    <div class="fields">
+      <div class="twelve wide field">
+        <input type="text" name="rua" placeholder="Rua" [(ngModel)]="farmacia.rua" #rua="ngModel">
+      </div>
+      <div class="four wide field">
+        <input type="text" name="numero" placeholder="Número"  [(ngModel)]="farmacia.numero" #numero="ngModel" >
+      </div>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label>Estado</label>
+      <div class="ui fluid search selection dropdown">
+        <input type="hidden" name="estado">
+        <i class="dropdown icon"></i>
+        <div class="default text">Ceará</div>
+        <!--div class="menu">
+          <div  *ngFor="let estado of estados" class="item">{{estado.nome}}</div>
+        </div-->
+       </div>
+    </div>
+    <div class="field">
+      <label>Cidade</label>
+      <select class="ui fluid dropdown">
+        <option value=""> </option>
+        <option *ngFor="let cidade of cidades" value="{{cidade}}"> {{cidade}} </option>
+      </select>
+    </div>
+  </div>
+  <button class="ui button" type="submit">Submit</button>
+</form>
