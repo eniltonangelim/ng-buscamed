@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginationComponent } from './pagination.component';
+import { FormRegisterAlertaComponent } from './form-register-alerta.component';
 
-describe('PaginationComponent', () => {
-  let component: PaginationComponent;
-  let fixture: ComponentFixture<PaginationComponent>;
+describe('FormRegisterAlertaComponent', () => {
+  let component: FormRegisterAlertaComponent;
+  let fixture: ComponentFixture<FormRegisterAlertaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ]
+      declarations: [ FormRegisterAlertaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaginationComponent);
+    fixture = TestBed.createComponent(FormRegisterAlertaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

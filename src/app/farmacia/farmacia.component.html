@@ -1,0 +1,22 @@
+<div class="ui main container">
+</div>
+<div class="ui center aligned sizer vertical segment">
+  <div class="ui huge header">Farmácia(s)</div>
+  <p></p>
+</div>
+
+
+<div class="ui grid">
+  <div class="sixteen wide column"></div>
+  <div class="ten wide column">
+    <app-list-item 
+      *ngIf="farmacias" 
+      [headers]='headers' 
+      [allItems]='farmacias'
+      (onDelete)="onDelete($event)"
+      (onEdit)="onEdit($event)"></app-list-item>
+  </div>
+  <div class="six wide column">
+    <router-outlet></router-outlet>
+  </div>
+</div>

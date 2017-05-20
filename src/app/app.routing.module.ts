@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
     { path: 'farmacias', 
-        loadChildren: 'app/forms-template/forms-template.module#FormsTemplateModule'//,
+        loadChildren: 'app/farmacia/farmacia.module#FarmaciaModule'//,
         //canActivate: [AuthGuard]
     },
     { path: '',
