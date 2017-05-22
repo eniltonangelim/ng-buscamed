@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-
 
 import { FarmaciaRoutingModule } from './farmacia.routing.module';
 
@@ -11,17 +11,21 @@ import { ListItemComponent } from '../lists-item/list-item.component';
 
 import { FarmaciaService } from './farmacia.service';
 import { PagerService } from '../pager/pager.service';
+import { FarmaciaStatisticComponent } from './../statistics/farmacia-statistic/farmacia-statistic.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     FarmaciaRoutingModule
   ],
   declarations: [
     FarmaciaComponent,
     FormRegisterFarmaciaComponent,
-    ListItemComponent
+    ListItemComponent,
+    FarmaciaStatisticComponent
   ],
   providers: [FarmaciaService, PagerService]
 })

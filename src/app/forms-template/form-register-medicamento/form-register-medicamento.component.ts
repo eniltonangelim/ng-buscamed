@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormRegisterMedicamentoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+
+  ) { }
 
   ngOnInit() {
   }
+
+
 
 }

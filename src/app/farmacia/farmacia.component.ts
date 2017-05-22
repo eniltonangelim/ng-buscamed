@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 export class FarmaciaComponent implements OnInit {
 
   private farmacias: Array<Farmacia>;
+  private farmacia: Farmacia;
   private headers: Array<any> = [
     {'name': 'Farmacia'},
     {'name': 'Endereco'},
-    {'name': 'Cidade'}
+    {'name': 'Complemento'}
   ] ;
 
   constructor(
@@ -27,6 +28,7 @@ export class FarmaciaComponent implements OnInit {
       data => this.farmacias = data,
       error => console.log('Error')
     );
+    this.onHome();
   }
 
 
@@ -35,8 +37,16 @@ export class FarmaciaComponent implements OnInit {
   }
 
   onEdit(farmacia: Farmacia){
-    this.router.navigate(['/farmacias/', farmacia.id, '/editar']);
-    console.log(farmacia)
+    this.router.navigate(['farmacias',farmacia.id,'editar']);
+    this.farmacia = farmacia;
+  }
+
+  onNew(){
+    this.router.navigate(['farmacias','novo']);
+  }
+
+  onHome(){
+    this.router.navigate(['farmacias','stats']);
   }
 
 }

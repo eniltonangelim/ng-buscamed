@@ -1,22 +1,41 @@
 <div class="ui main container">
 </div>
-<div class="ui center aligned sizer vertical segment">
-  <div class="ui huge header">Farmácia(s)</div>
-  <p></p>
+<div class="ui left aligned sizer vertical segment">
+  <div class="card">
+    <div class="content">
+      <h2 class="ui header">
+        <i class="info circle icon"></i>
+        <div class="content">
+          Farmácia
+          <div class="sub header">       
+            <span *ngIf="farmacias" >
+              <i class="building outline icon"></i>
+                {{farmacias.length}}
+            </span>
+          </div>
+        </div>
+      </h2>
+      <div class="extra content">
+        <div class="ui two small basic icon buttons">
+          <button class="ui button" (click)="onHome()"><i class="home icon"></i></button>
+          <button class="ui button active" (click)="onNew()"><i class="add icon"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
 
 <div class="ui grid">
   <div class="sixteen wide column"></div>
-  <div class="ten wide column">
-    <app-list-item 
-      *ngIf="farmacias" 
-      [headers]='headers' 
-      [allItems]='farmacias'
-      (onDelete)="onDelete($event)"
-      (onEdit)="onEdit($event)"></app-list-item>
-  </div>
   <div class="six wide column">
-    <router-outlet></router-outlet>
+     <router-outlet></router-outlet>
+  </div>
+  <div class="ten wide column">
+      <app-list-item 
+        *ngIf="farmacias" 
+        [headers]='headers' 
+        [allItems]='farmacias'
+        (onDelete)="onDelete($event)"
+        (onEdit)="onEdit($event)"></app-list-item>
   </div>
 </div>

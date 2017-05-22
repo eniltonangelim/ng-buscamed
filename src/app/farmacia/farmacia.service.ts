@@ -29,19 +29,18 @@ export class FarmaciaService {
         return body as any[]|| {};
     }
 
-    cadastrar(farmacia: any) {
+    cadastrar(farmacia: Farmacia) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         let body = JSON.stringify(farmacia);
         return this.http.post(this.urlServico, body, options).map(res => res.text());
     }
 
-    atualizar(farmacia: any) {
+    atualizar(farmacia: Farmacia) {
         this.urlServico; // + '/edit';
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         let body = JSON.stringify(farmacia);
-        console.log(body);
         return this.http.put(this.urlServico, body, options).map(res => res.text());
     }
 

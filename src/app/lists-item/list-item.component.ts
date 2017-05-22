@@ -34,12 +34,13 @@ export class ListItemComponent implements OnInit {
   }
 
   setPage(page: number) {
+
     if (page < 1 || page > this.pager.totalPages) {
         return;
     }
 
     // get pager object from service
-    this.pager = this.pagerService.getPager(this.allItems.length, page);
+    this.pager = this.pagerService.getPager(this.allItems.length, page, 3);
 
     // get current page of items
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
