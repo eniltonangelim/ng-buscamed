@@ -50,7 +50,7 @@
       <div class="ui  buttons">
         <button class="ui button">Cancel</button>
         <div class="or"></div>
-        <button class="ui positive button" type="submit">Save</button>
+        <button class="ui positive button" type="submit" [disabled]="!myForm.valid" >Save</button>
       </div>
     </form>
   </div>

@@ -21,6 +21,8 @@ export class ListItemComponent implements OnInit {
   @Output() onDelete = new EventEmitter<number>();
   @Output() onEdit = new EventEmitter<Farmacia>();
 
+  active: boolean = false;
+
   // pager object
   pager: any = {};
 
@@ -40,7 +42,7 @@ export class ListItemComponent implements OnInit {
     }
 
     // get pager object from service
-    this.pager = this.pagerService.getPager(this.allItems.length, page, 3);
+    this.pager = this.pagerService.getPager(this.allItems.length, page, 10);
 
     // get current page of items
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);

@@ -1,4 +1,5 @@
 <table class="ui compact celled definition table">
+
   <thead>
     <tr>
       <th></th>
@@ -6,6 +7,7 @@
       <th *ngFor="let header of headers" >{{header.name}}</th>
     </tr>
   </thead>
+
   <tbody>
     <tr *ngFor="let farmacia of pagedItems">
       <td class="collapsing">
@@ -13,8 +15,8 @@
           <div class="hidden content">Editar</div>
             <div class="visible content">
               <i class="edit icon"></i>
-            </div>
           </div>
+        </div>
       </td>
       <td class="collapsing">
         <div class="ui vertical animated button" tabindex="0" (click)='onDeleteItem(farmacia.id)' >
@@ -29,19 +31,21 @@
       <td>{{farmacia.complemento}}</td>
     </tr>
   </tbody>
+
   <tfoot>
     <tr>
-      <th colspan="5">
-      <div class="ui right floated pagination menu">
-        <a class="icon item" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)" >
-          <i class="left chevron icon"></i>
-        </a>
-        <a class="item" *ngFor="let page of pager.pages" (click)="setPage(page)" >{{page}}</a>
-        <a class="icon item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}" (click)="setPage(pager.currentPage + 1)" >
-          <i class="right chevron icon"></i>
-        </a>
-      </div>
-    </th>
+      <td colspan="5">
+        <div class="ui right floated pagination menu">
+          <a class="icon item" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)" >
+            <i class="left chevron icon"></i>
+          </a>
+          <a class="item"  *ngFor="let page of pager.pages" (click)='setPage(page)' >{{page}}</a>
+          <a class="icon item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}" (click)="setPage(pager.currentPage + 1)" >
+            <i class="right chevron icon"></i>
+          </a>
+        </div>
+      </td>
     </tr>
   </tfoot>
+
 </table>
