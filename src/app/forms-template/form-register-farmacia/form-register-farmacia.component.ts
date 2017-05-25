@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Farmacia } from '../../model/farmacia.model';
-import { ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { 
   FormBuilder, 
   FormGroup, 
@@ -12,7 +12,9 @@ import { CidadesService } from '../../thirdy-party-api/cidades.service';
 import { FarmaciaService } from '../../farmacia/farmacia.service';
 import { Subscription } from 'rxjs/Rx';
 
+
 @Component({
+  moduleId: module.id.toString(),
   selector: 'app-form-register-farmacia',
   templateUrl: './form-register-farmacia.component.html',
   styleUrls: ['./form-register-farmacia.component.css']
@@ -28,7 +30,8 @@ export class FormRegisterFarmaciaComponent implements OnInit {
   constructor( 
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private farmaciaService: FarmaciaService
+    private farmaciaService: FarmaciaService,
+    private router: Router
    ) { 
 
     this.myForm = fb.group({
@@ -58,7 +61,7 @@ export class FormRegisterFarmaciaComponent implements OnInit {
   onSubmit(farmacia: Farmacia): void {
     if (!farmacia.id) {
       this.farmaciaService.cadastrar(this.farmacia).subscribe(
-        error => console.log("Não foi possivel cadastrar a farmacia")
+        error => console.log("Não foi  possivel cadastrar a farmacia")
       );
     } else {
       this.farmaciaService.atualizar(this.farmacia).subscribe(
@@ -77,6 +80,10 @@ export class FormRegisterFarmaciaComponent implements OnInit {
 
   isNumber(c: FormControl): { [s: string]: boolean} {
     return c.value.match(/^[0-9]+$/) ? {invalidNumber: false} : {invalidNumber: true}
+  }
+
+  onHome(){
+    this.router.navigate(['farmacias']);
   }
 
 }

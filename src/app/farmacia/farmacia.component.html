@@ -24,17 +24,18 @@
   </div>
 </div>
 
-<div class="ui grid">
-  <div class="sixteen wide column"></div>
-  <div class="ten wide column">
-      <app-list-item 
+<div class="ui two column centered grid">
+  <div class="computer only row">
+    <div class="column"></div>
+  </div>
+  <div class="column">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+      <!--app-farmacia-list-item 
         *ngIf="farmacias" 
         [headers]='headers' 
         [allItems]='farmacias'
         (onDelete)="onDelete($event)"
-        (onEdit)="onEdit($event)"></app-list-item>
-  </div>
-  <div class="six wide column">
-     <router-outlet></router-outlet>
-  </div>
-</div>
+        (onEdit)="onEdit($event)"></app-farmacia-list-item-->

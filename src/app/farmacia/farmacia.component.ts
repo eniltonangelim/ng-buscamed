@@ -12,11 +12,6 @@ export class FarmaciaComponent implements OnInit {
 
   private farmacias: Array<Farmacia>;
   private farmacia: Farmacia;
-  private headers: Array<any> = [
-    {'name': 'Farmacia'},
-    {'name': 'Endereco'},
-    {'name': 'Complemento'}
-  ] ;
 
   constructor(
     private farmaciaService: FarmaciaService,
@@ -28,9 +23,8 @@ export class FarmaciaComponent implements OnInit {
       data => this.farmacias = data,
       error => console.log('Error')
     );
-    this.onHome();
+    this.onList();
   }
-
 
   onDelete(id: number){
     console.log(id);
@@ -46,7 +40,11 @@ export class FarmaciaComponent implements OnInit {
   }
 
   onHome(){
-    this.router.navigate(['farmacias','stats']);
+    this.onList();
+  }
+
+  onList(){
+    this.router.navigate(['farmacias','lista']);
   }
 
 }
