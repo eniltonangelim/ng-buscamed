@@ -49,6 +49,12 @@ export class FarmaciaService {
           return this.http.delete(url).map(res => res.text());
     }
 
+    buscar(nome: string){
+        return this.http.get([this.urlServico,'/nome/',nome].join(""))
+            .map(res => res.json())
+            .catch(this.handleError);        
+    }
+
     private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {

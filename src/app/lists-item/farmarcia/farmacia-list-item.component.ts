@@ -82,4 +82,14 @@ export class FarmaciaListItemComponent implements OnInit {
     )
   }
 
+  searchItem(term: string): void{
+    this.farmaciaService.buscar(term).subscribe(
+      data => {
+        this.allItems = data;
+        this.setPage(1);
+      },
+      onerror => this.loadFarmacias()
+    )
+  }
+
 }

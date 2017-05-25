@@ -7,16 +7,22 @@
   <p> Entre em contato com o <b> administrador </b> </p>
 </div>
 
-<table class="ui compact celled definition table">
+<table class="ui compact celled table">
   <thead>
     <tr>
-      <th></th>
+      <th>
+        <div class="ui transparent left icon input">
+          <input #search placeholder="Search..." type="text" pattern="[A-Za-z ]" (keyup)="searchItem(search.value)">
+          <i class="search icon"></i>
+        </div>
+      </th>
       <th></th>
       <th *ngFor="let header of headers" >{{header.name}}</th>
     </tr>
   </thead>
 
   <tbody>
+
     <tr *ngFor="let farmacia of pagedItems">
       <td class="collapsing">
         <div class="ui vertical animated button" tabindex="0" (click)='onEditItem(farmacia)'>
