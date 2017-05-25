@@ -1,6 +1,23 @@
 <div class="card" >
   <div class="content">
-  <form class="ui form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" [class.error]="!myForm.valid" >
+
+  <div *ngIf="showPositiveMessage" class="ui positive transition fade down message" >
+    <i  (click)="showPositiveMessage=false" class="close icon"></i>
+    <div class="header">
+      Item salvo
+    </div>
+    <p>Os dados da farmácia <b>{{farmacia.nome}}</b> foram armazenados.</p>
+  </div>
+
+  <div *ngIf="showNegativeMessage" class="ui negative transition fade down message" >
+    <i  (click)="showNegativeMessage=false" class="close icon"></i>
+    <div class="header">
+      Item não salvo
+    </div>
+    <p>Os dados da farmácia <b>{{farmacia.nome}}</b> não foram armazenados. Entre em contato com o <b> administrador </b></p>
+  </div>
+
+  <form class="ui form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value); myForm.reset()" [class.error]="!myForm.valid" >
     <h4 class="ui dividing header">Farmácia {{farmacia.nome}}</h4>
     
     <div class="field" >

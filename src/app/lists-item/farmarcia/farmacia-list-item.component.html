@@ -1,5 +1,13 @@
-<table class="ui compact celled definition table">
 
+<div *ngIf="showNegativeMessage" class="ui negative transition fade down message" >
+  <i  (click)="showNegativeMessage=false" class="close icon"></i>
+  <div class="header">
+    Lista não pode ser exibida
+  </div>
+  <p> Entre em contato com o <b> administrador </b> </p>
+</div>
+
+<table class="ui compact celled definition table">
   <thead>
     <tr>
       <th></th>
@@ -47,5 +55,4 @@
       </td>
     </tr>
   </tfoot>
-
 </table>

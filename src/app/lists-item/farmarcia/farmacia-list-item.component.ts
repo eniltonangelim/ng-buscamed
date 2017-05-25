@@ -22,7 +22,7 @@ export class FarmaciaListItemComponent implements OnInit {
   private headers: Array<any>;
   @Output() onDelete = new EventEmitter<number>();
   @Output() onEdit = new EventEmitter<Farmacia>();
-
+  showNegativeMessage: boolean = false;
   active: boolean = false;
 
   // pager object
@@ -77,7 +77,8 @@ export class FarmaciaListItemComponent implements OnInit {
       data => {
         this.allItems = data;
         this.setPage(1);
-      }
+      },
+      onerror => this.showNegativeMessage=true
     )
   }
 
