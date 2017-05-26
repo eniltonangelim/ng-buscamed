@@ -1,0 +1,34 @@
+<div class="ui main container"></div>
+<div class="ui left aligned sizer vertical segment">
+  <div class="card">
+    <div class="content inverted">
+      <h2 class="ui header">
+        <i class="info circle icon"></i>
+        <div class="content">
+          Medicamentos
+          <div class="sub header">       
+            <span *ngIf="medicamentos" >
+              <i class="building outline icon"></i>
+                {{medicamentos.length}}
+            </span>
+          </div>
+        </div>
+      </h2>
+      <div class="extra content">
+        <div class="ui two small basic icon buttons">
+          <button class="ui button" (click)="onHome()"><i class="home icon"></i></button>
+          <button class="ui button active" (click)="onNew()"><i class="add icon"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui two column centered grid">
+  <div class="computer only row">
+    <div class="column"></div>
+  </div>
+  <div class="column">
+    <router-outlet></router-outlet>
+  </div>
+</div>

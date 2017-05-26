@@ -1,3 +1,60 @@
-<p>
-  form-register-medicamento works!
-</p>
+<div class="card" >
+  <div class="content">
+
+  <div *ngIf="showPositiveMessage" class="ui positive transition fade down message" >
+    <i  (click)="showPositiveMessage=false" class="close icon"></i>
+    <div class="header">
+      Item salvo
+    </div>
+    <p>Os dados do medicamento foram armazenados.</p>
+  </div>
+
+  <div *ngIf="showNegativeMessage" class="ui negative transition fade down message" >
+    <i  (click)="showNegativeMessage=false" class="close icon"></i>
+    <div class="header">
+      Item não salvo
+    </div>
+    <p>Os dados do medicamento <b>{{medicamento.nome}}</b> não foram armazenados. Entre em contato com o <b> administrador </b></p>
+  </div>
+
+  <form class="ui form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value); myForm.reset()" [class.error]="!myForm.valid" >
+    <h4 class="ui dividing header">Medicamento {{medicamento.nome}}</h4>
+    
+    <div class="field" >
+      <div class="two fields">
+        <div class="field" [class.error]="!myForm.controls['nome'].valid && myForm.controls['nome'].touched ">
+          <input type="text" name="nome" placeholder="Medicamento" [formControl]="myForm.get('nome')" [(ngModel)]="medicamento.nome" required>
+          <div *ngIf="myForm.controls['nome'].hasError('required')" class="ui error message floated"> Obrigatório </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Laboratório</label>
+      <div class="fields">
+        <div class="twelve wide field"  [class.error]="!myForm.controls['laboratorio'].valid && myForm.controls['laboratorio'].touched " >
+          <input type="text" name="laboratorio" placeholder="Laboratório" [formControl]="myForm.get('laboratorio')" [(ngModel)]="medicamento.laboratorio" required>
+          <div *ngIf="myForm.controls['laboratorio'].hasError('required')" class="ui error message"> Obrigatório </div>
+        </div>
+        <div class="four wide field"  [class.error]="!myForm.controls['codBarras'].valid && myForm.controls['codBarras'].touched ">
+          <input type="text" name="codBarras" placeholder="Código de barras" [formControl]="myForm.get('codBarras')" [(ngModel)]="medicamento.codBarras" required>
+          <div *ngIf="myForm.controls['codBarras'].hasError('required')" class="ui error message"> Obrigatório </div>
+          <div *ngIf="myForm.controls['codBarras'].hasError('invalidNumber')" class="ui error message"> Somente números </div>
+        </div>
+      </div>
+
+      <div class="four wide field"  [class.error]="!myForm.controls['dosagem'].valid && myForm.controls['dosagem'].touched ">
+        <input type="text" name="dosagem" placeholder="Dosagem" [formControl]="myForm.get('dosagem')" [(ngModel)]="medicamento.dosagem" required>
+        <div *ngIf="myForm.controls['codBarras'].hasError('required')" class="ui error message"> Obrigatório </div>
+      </div>
+
+    </div>
+
+    <div class="ui  buttons">
+      <a class="ui button" (click)="myForm.reset()" >Limpar</a>
+      <div class="or"></div>
+      <button class="ui positive button" type="submit" [disabled]="!myForm.valid" >Save</button>
+    </div>
+  </form>
+  </div>
+</div>

@@ -5,10 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 
+
 const appRoutes: Routes = [
     { path: 'farmacias', 
         loadChildren: 'app/farmacia/farmacia.module#FarmaciaModule'//,
         //canActivate: [AuthGuard]
+    },
+    {
+        path: 'medicamentos',
+        loadChildren: 'app/medicamento/medicamento.module#MedicamentoModule'
     },
     { path: '',
         component: HomeComponent

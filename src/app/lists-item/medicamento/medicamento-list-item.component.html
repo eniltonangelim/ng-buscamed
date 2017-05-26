@@ -1,0 +1,64 @@
+
+<div *ngIf="showNegativeMessage" class="ui negative transition fade down message" >
+  <i  (click)="showNegativeMessage=false" class="close icon"></i>
+  <div class="header">
+    Lista não pode ser exibida
+  </div>
+  <p> Entre em contato com o <b> administrador </b> </p>
+</div>
+
+<table class="ui compact celled table">
+  <thead>
+    <tr>
+      <th>
+        <div class="ui transparent left icon input">
+          <input #search placeholder="Search..." type="text" pattern="[A-Za-z ]" (keyup)="searchItem(search.value)">
+          <i class="search icon"></i>
+        </div>
+      </th>
+      <th></th>
+      <th *ngFor="let header of headers" >{{header.name}}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let medicamento of pagedItems">
+      <td class="collapsing">
+        <div class="ui vertical animated button" tabindex="0" (click)='onEditItem(medicamento)'>
+          <div class="hidden content">Editar</div>
+            <div class="visible content">
+              <i class="edit icon"></i>
+          </div>
+        </div>
+      </td>
+      <td class="collapsing">
+        <div class="ui vertical animated button" tabindex="0" (click)='onDeleteItem(medicamento.id)' >
+          <div class="hidden content">Apagar</div>
+          <div class="visible content">
+              <i class="delete icon"></i>
+          </div>
+        </div>
+      </td>
+      <td>{{medicamento.nome}}</td>
+      <td>{{medicamento.laboratorio}}</td>
+      <td>{{medicamento.codBarras}}</td>
+    </tr>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="5">
+        <div class="ui right floated pagination menu">
+          <a class="icon item" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)" >
+            <i class="left chevron icon"></i>
+          </a>
+          <a class="item"  *ngFor="let page of pager.pages" (click)='setPage(page)' >{{page}}</a>
+          <a class="icon item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}" (click)="setPage(pager.currentPage + 1)" >
+            <i class="right chevron icon"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
+</table>

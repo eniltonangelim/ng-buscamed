@@ -10,7 +10,9 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { FooterHeaderComponent } from './footer-header/footer-header.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app.routing.module';
+
 import { FarmaciaModule } from './farmacia/farmacia.module';
+import { MedicamentoModule } from './medicamento/medicamento.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { FarmaciaModule } from './farmacia/farmacia.module';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    FarmaciaModule
+    FarmaciaModule,
+    MedicamentoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
