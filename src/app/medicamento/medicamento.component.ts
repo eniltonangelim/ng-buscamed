@@ -19,11 +19,11 @@ export class MedicamentoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    /*this.medicamentoService.listar().subscribe(
+    this.medicamentoService.listar().subscribe(
       data => this.medicamentos = data,
       error => console.log('Error')
     );
-    this.onList();*/
+    this.onList();
   }
 
   onDelete(id: number){
