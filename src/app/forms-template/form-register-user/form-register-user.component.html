@@ -1,3 +1,65 @@
-<p>
-  form-register-user works!
-</p>
+<div class="ui middle aligned two column centered grid">
+
+  <div *ngIf="showPositiveMessage" class="column">
+    <div class="ui positive transition fade down message" >
+      <i  (click)="showPositiveMessage=false" class="close icon" routerLink="/" ></i>
+      <div class="header">
+        Usuário {{usuarioNome}}
+      </div>
+      <p>Cadastrado com sucesso.</p>
+    </div>
+  </div>
+
+  <div *ngIf="!showPositiveMessage" class="column">
+    <h2 class="ui teal image header">
+      <img src="" class="image">
+      <div class="content">
+        Sign up
+      </div>
+    </h2>
+    <form class="ui large form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value); myForm.reset()" [class.error]="!myForm.valid">
+      <div class="ui stacked segment">
+
+        <div class="field" [class.error]="!myForm.controls['nome'].valid" >
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="nome" placeholder="Nome" [formControl]="myForm.get('nome')" [(ngModel)]="usuario.nome" required>
+          </div>
+        </div>
+
+        <div class="field" [class.error]="!myForm.controls['email'].valid" >
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="email" name="email" placeholder="E-mail" [formControl]="myForm.get('email')" [(ngModel)]="usuario.email" required>
+          </div>
+        </div>
+
+        <div class="field" [class.error]="!myForm.controls['senha'].valid">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="senha" placeholder="senha" [formControl]="myForm.get('senha')" [(ngModel)]="usuario.senha" required>
+          </div>
+        </div>
+        <button class="ui fluid large teal submit button" [disabled]="!myForm.valid">Sign up</button>
+      </div>
+
+      <div *ngIf="showNegativeMessage" class="ui negative transition fade down message" >
+        <i  (click)="showNegativeMessage=false" class="close icon"></i>
+        <div class="header">
+          Usuário {{usuarioNome}}
+        </div>
+        <p>Os dados do usuário <b>{{usuarioNome}}</b> não foram armazenados. Entre em contato com o <b> administrador </b></p>
+      </div>
+
+      <div *ngIf="myForm.controls['nome'].hasError('required') && myForm.controls['nome'].touched" class="ui error message floated"> O campo nome é obrigatório </div>
+      <div *ngIf="myForm.controls['email'].hasError('required') && myForm.controls['email'].touched" class="ui error message floated"> O campo email é obrigatório </div>
+      <div *ngIf="myForm.controls['email'].hasError('email') && myForm.controls['email'].touched" class="ui error message floated"> Email inválido </div>
+      <div *ngIf="myForm.controls['senha'].hasError('required') && myForm.controls['senha'].touched" class="ui error message floated"> O campo senha é obrigatório </div>
+
+    </form>
+
+    <!--div class="ui message">
+      Novo? <a href="#">Registre-se</a>
+    </div-->
+  </div>
+</div>

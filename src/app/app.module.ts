@@ -1,15 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SearchItemComponent } from './search-item/search-item.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
 import { FooterHeaderComponent } from './footer-header/footer-header.component';
-import { HomeComponent } from './home/home.component';
-import { AppRoutingModule } from './app.routing.module';
+
+import { 
+  AppRoutingModule, 
+  rootRouterComponents,
+  rootRouterGuards } from './app.routing.module';
 
 import { FarmaciaModule } from './farmacia/farmacia.module';
 import { MedicamentoModule } from './medicamento/medicamento.module';
@@ -18,20 +20,20 @@ import { MedicamentoModule } from './medicamento/medicamento.module';
   declarations: [
     AppComponent,
     SearchItemComponent,
-    AuthenticationComponent,
     FooterHeaderComponent,
-    HomeComponent
+    rootRouterComponents
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
     FarmaciaModule,
     MedicamentoModule
   ],
-  providers: [],
+  providers: [rootRouterGuards],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

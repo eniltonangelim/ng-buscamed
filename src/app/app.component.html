@@ -9,15 +9,28 @@
       <app-search-item></app-search-item>
     </div>
 
-    <div  class="ui pointing dropdown link item">
+    <div *ngIf="!loggedIn" class="ui pointing dropdown link item">
       <i class="circular user icon"></i>
       Usuário
       <div class="menu transition visible">
           <div class="header"> user area </div>
-          <div class="item">Log in</div>
-          <div class="item">Sign Up</div>
+          <div class="item" routerLink="/login" >Log in</div>
+          <div class="item" routerLink="/signup" >Sign Up</div>
       </div>
     </div>
+
+    <div *ngIf="loggedIn" class="ui pointing dropdown link item">
+      <i class="circular user icon"></i>
+      Usuário
+      <div class="menu transition visible">
+          <div class="header"> user area </div>
+          <div class="item" routerLink="/farmacias" >Farmácias</div>
+          <div class="item" routerLink="/medicamentos" >Medicamentos</div>
+          <div class="item" (click)="logout()" >Logout</div>
+      </div>
+    </div>
+    
+
 </div>
 
 <router-outlet></router-outlet>
