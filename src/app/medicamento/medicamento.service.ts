@@ -55,6 +55,13 @@ export class MedicamentoService {
             .catch(this.handleError);        
     }
 
+    searchByNome(nome: string): Observable<any[]> {
+        let url = this.urlServico + '/nome/' + `${nome}`
+        return this.http
+           .get(url)
+           .map(res => res.json() as any[]);
+    }
+
     private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
