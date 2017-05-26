@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/catch';
+
+// Observable class extensions
 import 'rxjs/add/observable/of';
+
+// Observable operators
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 import { MedicamentoService } from '../medicamento/medicamento.service';
 import { Medicamento } from '../model/medicamento.model';
@@ -18,44 +20,35 @@ import { Medicamento } from '../model/medicamento.model';
 })
 export class SearchItemComponent implements OnInit {
 
-  private searchTerm = new Subject<string>();
-  medicamento: Observable<Medicamento[]>;
+  private searchTerms = new Subject<string>();
+  medicamentos: Observable<Medicamento[]>;
 
   constructor(
     private medicamentoService: MedicamentoService
   ) { }
 
-  ngOnInit() {
-    this.medicamento = this.searchTerm
-    .debounceTime(300)        // wait for 300ms pause in events
-    .distinctUntilChanged()   // ignore if next search term is same as previous
-    .switchMap(term => term   // switch to new observable each time
+  ngOnInit(): void {
+    this.medicamentos = this.searchTerms
+      .debounceTime(300)        // wait 300ms after each keystroke before considering the term
+      .distinctUntilChanged()   // ignore if next search term is same as previous
+      .switchMap(term => term   // switch to new observable each time the term changes
         // return the http search observable
-        ? this.searchByNome(term)
-        // or the observable of empty heroes if no search term
+        ? this.medicamentoService.searchByNome(term)
+        // or the observable of empty heroes if there was no search term
         : Observable.of<Medicamento[]>([]))
-    .catch(error => {
-        // TODO: real error handling
+      .catch(error => {
+        // TODO: add real error handling
+        console.log(error);
         return Observable.of<Medicamento[]>([]);
-    });
+      });
   }
 
   search(term: string): void {
-    this.searchTerm.next(term);
+    this.searchTerms.next(term);
   }
 
-  searchByNome(term: any){
-    return this.medicamentoService.searchByNome(term)
-      .do(
-        medicamentos => { 
-          if ( medicamentos.length == 0 ) {
-            console.log(medicamentos)
-            Observable.of();
-          } else {
-            console.log(medicamentos)
-            Observable.of(medicamentos) ;
-          }
-        }
-      )
+  searchByNome(term: string): Observable<Medicamento[]> {
+    return this.medicamentoService.searchByNome(term);
   }
+
 }

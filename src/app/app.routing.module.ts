@@ -20,6 +20,11 @@ const appRoutes: Routes = [
         canActivate: [LoggedInGuard]
     },
     {
+        path: 'alertas',
+        loadChildren: 'app/alerta/alerta.module#AlertaModule',
+        canActivate: [LoggedInGuard]
+    },
+    {
         path: 'login',
         component: FormUserLoginComponent
     },

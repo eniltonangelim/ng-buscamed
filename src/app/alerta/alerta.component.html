@@ -1,0 +1,41 @@
+<div class="ui main container"></div>
+<div class="ui left aligned sizer vertical segment">
+  <div class="card">
+    <div class="content inverted">
+      <h2 class="ui header">
+        <i class="info circle icon"></i>
+        <div class="content">
+          Alerta
+          <div class="sub header">       
+            <span *ngIf="alertas" >
+              <i class="building outline icon"></i>
+                {{alertas.length}}
+            </span>
+          </div>
+        </div>
+      </h2>
+      <div class="extra content">
+        <div class="ui two small basic icon buttons">
+          <button class="ui button" (click)="onHome()"><i class="home icon"></i></button>
+          <button class="ui button active" (click)="onNew()"><i class="add icon"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui two column centered grid">
+  <div class="computer only row">
+    <div class="column"></div>
+  </div>
+  <div class="column">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+      <!--app-alerta-list-item 
+        *ngIf="alertas" 
+        [headers]='headers' 
+        [allItems]='alertas'
+        (onDelete)="onDelete($event)"
+        (onEdit)="onEdit($event)"></app-alerta-list-item-->

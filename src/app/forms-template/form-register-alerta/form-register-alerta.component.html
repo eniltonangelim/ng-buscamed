@@ -1,3 +1,13 @@
-<p>
-  form-register-alerta works!
-</p>
+<form class="ui form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value); myForm.reset()" [class.error]="!myForm.valid" >
+  <div class="two fields">
+    <div class="field" [class.error]="!myForm.controls['precoAlvo'].valid && myForm.controls['precoAlvo'].touched">
+      <div class="ui right labeled left icon input">
+        <i class="dollar icon"></i>
+          <input #precoAlvo type="text" placeholder="Preço alvo" [formControl]="myForm.get('precoAlvo')"  [(ngModel)]="alerta.precoAlvo" >
+        <a class="ui tag label">
+          Add
+        </a>
+      </div>
+    </div>
+  </div>
+</form>
