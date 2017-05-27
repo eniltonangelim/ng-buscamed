@@ -10,20 +10,30 @@
 <table class="ui compact celled table">
   <thead>
     <tr>
+      <!--th *ngFor="let header of headers" >{{header.name}}</th-->
       <th>
         <div class="ui transparent left icon input">
-          <input #search placeholder="Search..." type="text" pattern="[A-Za-z ]" (keyup)="searchItem(search.value)">
+          <input #search placeholder="Medicamento" type="text" pattern="[A-Za-z ]" (keyup)="searchItem(search.value)">
           <i class="search icon"></i>
         </div>
       </th>
+      <th>
+        Laboratório
+      </th>
+      <th>
+        Código de barras
+      </th>
       <th></th>
-      <th *ngFor="let header of headers" >{{header.name}}</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
 
     <tr *ngFor="let medicamento of pagedItems">
+      <td>{{medicamento.nome}}</td>
+      <td>{{medicamento.laboratorio}}</td>
+      <td>{{medicamento.codBarras}}</td>
       <td class="collapsing">
         <div class="ui vertical animated button" tabindex="0" (click)='onEditItem(medicamento)'>
           <div class="hidden content">Editar</div>
@@ -40,15 +50,12 @@
           </div>
         </div>
       </td>
-      <td>{{medicamento.nome}}</td>
-      <td>{{medicamento.laboratorio}}</td>
-      <td>{{medicamento.codBarras}}</td>
     </tr>
   </tbody>
 
   <tfoot>
     <tr>
-      <td colspan="5">
+      <td colspan="2">
         <div class="ui right floated pagination menu">
           <a class="icon item" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)" >
             <i class="left chevron icon"></i>
