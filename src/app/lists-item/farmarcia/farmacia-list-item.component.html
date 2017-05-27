@@ -10,20 +10,26 @@
 <table class="ui compact celled table">
   <thead>
     <tr>
-      <th>
+      <!--th *ngFor="let header of headers" >{{header.name}}</th-->
+      <th>        
         <div class="ui transparent left icon input">
-          <input #search placeholder="Search..." type="text" pattern="[A-Za-z ]" (keyup)="searchItem(search.value)">
+          <input #search placeholder="Farmácia" type="text" pattern="[A-Za-z ]" (keyup)="searchItem(search.value)">
           <i class="search icon"></i>
         </div>
       </th>
+      <th> Endereço </th>
+      <th> Complemento </th>
       <th></th>
-      <th *ngFor="let header of headers" >{{header.name}}</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
 
     <tr *ngFor="let farmacia of pagedItems">
+      <td>{{farmacia.nome}}</td>
+      <td>{{farmacia.rua}}, {{farmacia.numero}}</td>
+      <td>{{farmacia.complemento}}</td>
       <td class="collapsing">
         <div class="ui vertical animated button" tabindex="0" (click)='onEditItem(farmacia)'>
           <div class="hidden content">Editar</div>
@@ -40,9 +46,6 @@
           </div>
         </div>
       </td>
-      <td>{{farmacia.nome}}</td>
-      <td>{{farmacia.rua}}, {{farmacia.numero}}</td>
-      <td>{{farmacia.complemento}}</td>
     </tr>
   </tbody>
 
