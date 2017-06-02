@@ -41,20 +41,17 @@ export class MedicamentoCardListComponent implements OnDestroy {
     private router: Router,
     private authService: AuthenticationService
   ) { 
-    // Atualiza a pesquisa    
-    this.inscricao = this.searchItemService.searchChange.subscribe(
-      newResult => this.changeMedicamento(newResult)
-    )
+      // Atualiza a pesquisa    
+      this.inscricao = this.searchItemService.searchChange.subscribe(
+        newResult => this.changeMedicamento(newResult)
+      )
 
-    // Usuario logado
-
-    this.authChangeSubscription_ = 
-    authService.authChange.subscribe(
-        newAuthState =>
-        this.loggedIn = (newAuthState === AuthState.LoggedIn)
-    );        
-
-
+      // Usuario logado
+      this.authChangeSubscription_ = 
+      authService.authChange.subscribe(
+          newAuthState =>
+          this.loggedIn = (newAuthState === AuthState.LoggedIn)
+      );
   }
 
   setPage(page: number) {

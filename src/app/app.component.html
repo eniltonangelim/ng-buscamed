@@ -9,7 +9,7 @@
       <app-search-item></app-search-item>
     </div>
 
-    <div *ngIf="!loggedIn" class="ui pointing dropdown link item">
+    <!--div *ngIf="!loggedIn" class="ui pointing dropdown link item">
       <i class="circular user icon"></i>
       Usuário
       <div class="menu transition visible">
@@ -17,17 +17,19 @@
           <div class="item" routerLink="/login" >Log in</div>
           <div class="item" routerLink="/signup" >Sign Up</div>
       </div>
-    </div>
+    </div-->
 
-    <div *ngIf="loggedIn" class="ui pointing dropdown link item">
+    <div class="ui pointing dropdown link item" (click)="toggleState()">
       <i class="circular user icon"></i>
       Usuário
-      <div class="menu transition visible">
+      <div class="menu" [@visibleToggle]="state" >
           <div class="header"> user area </div>
-          <div class="item" routerLink="/alertas" >Meus alertas</div>
-          <div class="item" routerLink="/farmacias" >Farmácias</div>
-          <div class="item" routerLink="/medicamentos" >Medicamentos</div>
-          <div class="item" (click)="logout()" >Logout</div>
+          <div *ngIf="!loggedIn" class="item" routerLink="/login" >Log in</div>
+          <div *ngIf="!loggedIn" class="item" routerLink="/signup" >Sign Up</div>
+          <div *ngIf="loggedIn" class="item" routerLink="/alertas" >Meus alertas</div>
+          <div *ngIf="loggedIn" class="item" routerLink="/farmacias" >Farmácias</div>
+          <div *ngIf="loggedIn" class="item" routerLink="/medicamentos" >Medicamentos</div>
+          <div *ngIf="loggedIn" class="item" (click)="logout()" >Logout</div>
       </div>
     </div>
     
