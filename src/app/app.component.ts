@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
-
 import { AuthenticationService, AuthState } from './authentication/authentication.service';
 import {Subscription} from 'rxjs/Subscription';
+import { Router } from '@angular/router';
 
 import { visibleToggle } from './_animations/visibleToggle';
 
@@ -16,7 +16,7 @@ export class AppComponent implements OnDestroy {
   private authChangeSubscription_: Subscription;
   private state: string = "hidden";
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService, private router: Router) {
       this.authChangeSubscription_ = 
           authService.authChange.subscribe(
               newAuthState =>
@@ -29,6 +29,7 @@ export class AppComponent implements OnDestroy {
   }
 
   logout() {
+    this.router.navigate([""])
     this.authService.logout();
   }
 
