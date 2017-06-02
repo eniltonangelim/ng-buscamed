@@ -1,19 +1,21 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SearchItemService } from '../../search-item/search-item.service';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 import { Subscription } from 'rxjs/Rx';
 import { PagerService } from '../../pager/pager.service';
 import { AuthenticationService, AuthState } from '../../authentication/authentication.service';
 import { Medicamento } from '../../model/medicamento.model'
 import { Alerta } from '../../model/alerta.model'
 
-
+import { flyinOut } from '../../_animations/flyInOut';
+import { statusToggle } from '../../_animations/statusToggle';
 
 @Component({
   selector: 'app-medicamento-card-list',
   templateUrl: './medicamento-card-list.component.html',
-  styleUrls: ['./medicamento-card-list.component.css']
+  styleUrls: ['./medicamento-card-list.component.css'],
+  animations: [flyinOut, statusToggle]
 })
 export class MedicamentoCardListComponent implements OnDestroy {
 
@@ -22,6 +24,8 @@ export class MedicamentoCardListComponent implements OnDestroy {
   private medicamentos: Medicamento[];
   private medicamentoObserver: Observable<Medicamento[]>;
   private authChangeSubscription_: Subscription;
+
+  private state: string = 'inactive';
 
   inscricao: Subscription;
   // pager object
@@ -85,6 +89,14 @@ export class MedicamentoCardListComponent implements OnDestroy {
   changeMedicamento(medicamentos: Medicamento[]){
     this.allItems = medicamentos;
     this.setPage(1);
+  }
+
+  private toggleState(): void {
+    if (this.state === 'inactive') {
+      this.state = 'active';
+    } else {
+      this.state = 'inactive';
+    }
   }
 
 }
