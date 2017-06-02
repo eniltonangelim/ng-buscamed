@@ -20,11 +20,7 @@ export class AlertaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.alertaService.listar().subscribe(
-    //  data => this.alertas = data,
-    //  error => console.log('Error')
-    //);
-    //this.onList();
+    this.onList();
   }
 
   onDelete(id: number){

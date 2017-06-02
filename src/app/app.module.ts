@@ -17,6 +17,8 @@ import { FarmaciaModule } from './farmacia/farmacia.module';
 import { MedicamentoModule } from './medicamento/medicamento.module';
 import { AlertaModule } from './alerta/alerta.module';
 
+import { SearchItemService } from './search-item/search-item.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,7 @@ import { AlertaModule } from './alerta/alerta.module';
     MedicamentoModule,
     AlertaModule
   ],
-  providers: [rootRouterGuards],
+  providers: [rootRouterGuards, SearchItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,41 @@
+<div class="ui four column centered grid">
+  <div class="column"  *ngFor="let medicamento of pagedItems" >
+    <div class="ui card">
+      <div class="content">
+        <a class="header">{{medicamento.nome}}</a>
+        <div class="meta">
+          <span class="date">{{medicamento.dosagem}}</span>
+        </div>
+        <div class="description">
+          {{medicamento.laboratorio}}
+        </div>
+      </div>
+      <div class="extra content">
+        <a *ngIf="!loggedIn" >
+          <i class="alarm outline icon"></i>
+        </a>
+        <div *ngIf="loggedIn" class="ui right labeled left icon input">
+          <i class="dollar icon"></i>
+            <input #precoAlvo type="number" placeholder="Preço alvo" min='0' >
+          <a class="ui tag label" (click)="registerAlerta(precoAlvo.value, medicamento)" >
+            Add
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pagedItems" class="ui four column centered row">
+    <div class="column">
+      <div class="ui pagination menu">
+        <a class="icon item" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)" >
+          <i class="left chevron icon"></i>
+        </a>
+        <a class="item"  *ngFor="let page of pager.pages" (click)='setPage(page)' >{{page}}</a>
+        <a class="icon item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}" (click)="setPage(pager.currentPage + 1)" >
+          <i class="right chevron icon"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+<div>

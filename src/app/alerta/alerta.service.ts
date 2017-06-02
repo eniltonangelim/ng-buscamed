@@ -12,7 +12,7 @@ export class AlertaService {
     constructor(private http: Http) {   }
 
     listarByUser(id: number): Observable<Alerta[]>{
-        return this.http.get([this.urlServico,'usuario',id].join(''))
+        return this.http.get([this.urlServico,'/usuario/',id].join(''))
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -44,8 +44,8 @@ export class AlertaService {
     }
 
     delete(id: number) {
-      let url = this.urlServico + '/' + id;
-          return this.http.delete(url).map(res => res.text());
+        let url = this.urlServico + '/' + id;
+        return this.http.delete(url).map(res => res.text());
     }
 
     buscar(nome: string){

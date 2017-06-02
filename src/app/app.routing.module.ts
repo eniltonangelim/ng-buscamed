@@ -8,6 +8,7 @@ import { LoggedInGuard } from './authentication/logged-in.guard';
 import { HomeComponent } from './home/home.component';
 import { FormUserLoginComponent } from './forms-template/form-user-login/form-user-login.component';
 import { FormRegisterUserComponent } from './forms-template/form-register-user/form-register-user.component';
+import { MedicamentoCardListComponent } from './cards-item/medicamento-card-list/medicamento-card-list.component';
 
 const appRoutes: Routes = [
     { path: 'farmacias', 
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
         path: 'alertas',
         loadChildren: 'app/alerta/alerta.module#AlertaModule',
         canActivate: [LoggedInGuard]
+    },
+    {
+        path: 'result',
+        component: MedicamentoCardListComponent
     },
     {
         path: 'login',
@@ -52,5 +57,6 @@ export const rootRouterGuards = [
 export const rootRouterComponents = [
     HomeComponent,
     FormUserLoginComponent,
-    FormRegisterUserComponent
+    FormRegisterUserComponent,
+    MedicamentoCardListComponent
 ]

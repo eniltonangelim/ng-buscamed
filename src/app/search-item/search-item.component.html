@@ -1,9 +1,9 @@
 <div class="ui right action left icon input">
   <i class="search icon"></i>
-  <input #searchIt id="search-it" type="text" (keyup)='search(searchIt.value)' placeholder="Search..."/>
-  <select class="ui compact selection dropdown">
-    <option value="all">All</option>
-    <option selected="" value="articles">Medicamento</option>
+  <input #searchIt id="search-it" type="text" placeholder="Search..."/>
+  <!--select class="ui compact selection dropdown">
+    <option value="none"></option>
     <option value="products">Cidade</option>
-  </select>  
+  </select-->
+  <button class="ui button" (click)='search(searchIt.value)' >Search</button>
 </div>

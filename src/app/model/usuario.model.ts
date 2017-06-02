@@ -5,11 +5,11 @@ export class Usuario {
     email: string;
     senha: string
 
-	constructor(id?: number, nome?:string, email?: string, senha?: string) {
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.senha = senha;
+	constructor(obj?: any) {
+		this.id = obj ? obj.id : null;
+		this.nome = obj ? obj.nome : null;
+		this.email =  obj ? obj.email : null;
+		this.senha =  obj ? obj.senha : null;
     }
 
 }

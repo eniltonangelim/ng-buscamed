@@ -9,7 +9,7 @@ import { Alerta } from '../../model/alerta.model';
 import { PagerService } from '../../pager/pager.service';
 import { AlertaService } from '../../alerta/alerta.service';
 import { Router } from '@angular/router';
-
+import { AuthenticationService, AuthState } from '../../authentication/authentication.service';
 
 @Component({
   selector: 'app-alerta-list-item',
@@ -33,16 +33,17 @@ export class AlertaListItemComponent implements OnInit {
   constructor(
     private pagerService: PagerService,
     private alertaService: AlertaService,
-    private router: Router) { 
+    private router: Router,
+    private authService: AuthenticationService) { 
         this.headers = [
           {'name': 'Medicamento'},
           {'name': 'Preço'},
           {'name': 'Ativo'}
-        ] ;
+        ];
      }
 
   ngOnInit() {
-    //this.loadAlertas();
+    this.loadAlertas(this.authService.getUserLogged().id);
   }
 
   setPage(page: number) {
@@ -61,7 +62,7 @@ export class AlertaListItemComponent implements OnInit {
   onDeleteItem(id: number){
     this.alertaService.delete(id).subscribe(
       data => {
-        console.log(data)
+        this.loadAlertas(this.authService.getUserLogged().id)
       }
     );
     

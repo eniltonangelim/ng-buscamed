@@ -15,6 +15,8 @@ export class AuthenticationService {
     private authState_:AuthState;
     authChange:Observable<AuthState>;
 
+    user: Usuario;
+
     private error: String;
     urlServico: string = "http://127.0.0.1:8080/login";
 
@@ -53,7 +55,10 @@ export class AuthenticationService {
         let options = new RequestOptions({ headers: headers });
         let body = JSON.stringify(usuario);
         return this.http.post(urlServico, body, options)
-            .do(res => this.setAuthState_(AuthState.LoggedIn))
+            .do(res => { 
+                this.user = new Usuario(JSON.parse(res.text()))
+                this.setAuthState_(AuthState.LoggedIn) 
+            })
             .map(res => res.text());
     }
 
@@ -100,6 +105,11 @@ export class AuthenticationService {
         this.authState_ = newAuthState;
         this.emitAuthState();
     }
+
+    getUserLogged(): Usuario {
+        return this.user;
+    }
+
 }
 
 export const enum AuthState {
