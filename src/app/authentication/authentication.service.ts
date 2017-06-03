@@ -107,6 +107,7 @@ export class AuthenticationService {
     }
 
     getUserLogged(): Usuario {
+        console.log(this.user);
         return this.user;
     }
 
