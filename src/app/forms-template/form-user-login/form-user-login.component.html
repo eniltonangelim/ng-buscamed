@@ -1,9 +1,19 @@
 <div class="ui middle aligned two column centered grid">
-  <div class="column">
+  
+  <div *ngIf="showPositiveMessage" class="column row">
+    <div class="ui positive transition fade down message" >
+      <i  routerLink="" class="close icon" routerLink="/" ></i>
+      <div class="header">
+        Bem-vindo {{usuario.nome}}
+      </div>
+      <p> Não esqueça de criar seus alertas! </p>
+    </div>
+  </div>
+
+  <div *ngIf="!showPositiveMessage" class="column">
     <h2 class="ui teal image header">
-      <img src="" class="image">
       <div class="content">
-        Log-in
+        Entre
       </div>
     </h2>
     <form class="ui large form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value); myForm.reset()" [class.error]="!myForm.valid">
@@ -32,7 +42,7 @@
     </form>
 
     <div class="ui message">
-      Novo? <a href="#">Registre-se</a>
+      Novo? <a routerLink="/signup">Registre-se</a>
     </div>
   </div>
 </div>

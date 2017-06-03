@@ -1,6 +1,6 @@
 <div class="ui four column centered grid">
-  <div class="column"  *ngFor="let medicamento of pagedItems" [@flyInOut]="'in'">
-    <div class="ui card" [@statusToggle]="state" (click)="toggleState()" >
+  <div class="column"  *ngFor="let medicamento of pagedItems" [@flyInOut]="'in'"  [@statusToggle]="state" (click)="toggleState()" >
+    <div class="ui card" >
       <div class="content">
         <a class="header">{{medicamento.nome}}</a>
         <div class="meta">
@@ -16,7 +16,7 @@
         </a>
         <div *ngIf="loggedIn" class="ui right labeled left icon input">
           <i class="dollar icon"></i>
-            <input #precoAlvo type="number" placeholder="Preço alvo" min='0' >
+            <input #precoAlvo type="number" placeholder="Preço alvo" min='0' [@statusToggle]="" >
           <a class="ui tag label" (click)="registerAlerta(precoAlvo.value, medicamento)" >
             Add
           </a>

@@ -20,7 +20,7 @@ export class FormUserLoginComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
   myForm: FormGroup;
-    showNegativeMessage: boolean = false;
+  showNegativeMessage: boolean = false;
   showPositiveMessage: boolean = false;
 
   constructor(
@@ -43,8 +43,8 @@ export class FormUserLoginComponent implements OnInit {
   login(usuario: Usuario) {
     this.authService.login(usuario).subscribe(
       ondata => { 
+        this.usuario = this.authService.getUserLogged();
         this.showPositiveMessage = true;
-        this.router.navigate(['/']);
       },
       onerror => this.showNegativeMessage = false
     );

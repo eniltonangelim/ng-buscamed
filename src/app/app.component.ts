@@ -12,16 +12,20 @@ import { visibleToggle } from './_animations/visibleToggle';
   animations: [visibleToggle]
 })
 export class AppComponent implements OnDestroy {
+  
   loggedIn:boolean;
   private authChangeSubscription_: Subscription;
   private state: string = "hidden";
+  private user_id: string;
 
   constructor(private authService: AuthenticationService, private router: Router) {
       this.authChangeSubscription_ = 
           authService.authChange.subscribe(
-              newAuthState =>
-              this.loggedIn = (newAuthState === AuthState.LoggedIn)
-          );        
+              newAuthState => {
+                this.loggedIn = (newAuthState === AuthState.LoggedIn)
+                this.user_id = this.loggedIn ? this.authService.getUserLogged().nome : 'Usuário'
+              }
+      );        
   }
 
   ngOnDestroy() {
@@ -29,7 +33,7 @@ export class AppComponent implements OnDestroy {
   }
 
   logout() {
-    this.router.navigate([""])
+    this.router.navigate(["login"])
     this.authService.logout();
   }
 
