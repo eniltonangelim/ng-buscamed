@@ -56,8 +56,13 @@ export class MedicamentoService {
             .catch(this.handleError);        
     }
 
+    buscarHistorico(id: number){
+        return this.http.get([ this.urlServico, '/historico/', id ].join(""))
+            .map(res => res.json() )
+            .catch(this.handleError);        
+    }
+
     searchByNome(nome: string): Observable<Medicamento[]> {
-        console.log(nome)
         let url = this.urlServico + '/nome/' + `${nome}`
         return this.http
            .get(url)

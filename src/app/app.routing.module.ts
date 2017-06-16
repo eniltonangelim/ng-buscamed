@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { FormUserLoginComponent } from './forms-template/form-user-login/form-user-login.component';
 import { FormRegisterUserComponent } from './forms-template/form-register-user/form-register-user.component';
 import { MedicamentoCardListComponent } from './cards-item/medicamento-card-list/medicamento-card-list.component';
+import { ChartComponent } from './chart/chart.component';
 
 const appRoutes: Routes = [
     { path: 'farmacias', 
@@ -37,6 +38,10 @@ const appRoutes: Routes = [
         path: 'signup',
         component: FormRegisterUserComponent
     },
+    {
+        path: 'chart',
+        component: ChartComponent
+    },
     { path: '',
         component: HomeComponent
     }
@@ -58,5 +63,6 @@ export const rootRouterComponents = [
     HomeComponent,
     FormUserLoginComponent,
     FormRegisterUserComponent,
-    MedicamentoCardListComponent
+    MedicamentoCardListComponent,
+    ChartComponent
 ]

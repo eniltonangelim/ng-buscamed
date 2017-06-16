@@ -77,6 +77,12 @@ export class SearchItemService {
             .catch(this.handleError);        
     }
 
+    buscarHistorico(id: number){
+        return this.http.get([ this.urlServico, '/historico/', id ].join(""))
+            .map(res => res.json() )
+            .catch(this.handleError);        
+    }
+
     emitResultChange(): void {
         this.searchManager_.next(this.searchState_);
     }

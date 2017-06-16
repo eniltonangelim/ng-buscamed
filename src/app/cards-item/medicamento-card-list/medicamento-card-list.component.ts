@@ -24,9 +24,11 @@ export class MedicamentoCardListComponent implements OnDestroy {
   private medicamentos: Medicamento[];
   private medicamentoObserver: Observable<Medicamento[]>;
   private authChangeSubscription_: Subscription;
-
+  private showDialog = false;
   private state: string = 'inactive';
-
+  private lineChartData: Array<any>;
+  private lineChartLabels:Array<any>;
+  
   inscricao: Subscription;
   // pager object
   pager: any = {};
@@ -86,6 +88,23 @@ export class MedicamentoCardListComponent implements OnDestroy {
   changeMedicamento(medicamentos: Medicamento[]){
     this.allItems = medicamentos;
     this.setPage(1);
+  }
+
+  openChart( id:number  ) {
+    this.searchItemService.buscarHistorico(id).subscribe(
+      data => {
+        if ( data ) {
+          this.lineChartData = [];
+          this.lineChartLabels = [];
+          for (var index = 0; index < data.length; index++) {
+            var element = data[index];
+            this.lineChartLabels.push(element[0])
+            this.lineChartData.push(element[1])
+          }
+          this.showDialog = !this.showDialog;
+        }
+      }
+    )
   }
 
   private toggleState(): void {

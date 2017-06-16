@@ -14,11 +14,16 @@
         <a *ngIf="!loggedIn" >
           <i class="alarm outline icon"></i>
         </a>
-        <div *ngIf="loggedIn" class="ui right labeled left icon input">
+        <div *ngIf="loggedIn" class="ui right labeled left icon input" style="width: 80%">
           <i class="dollar icon"></i>
             <input #precoAlvo type="number" placeholder="Preço alvo" min='0' [@statusToggle]="" >
           <a class="ui tag label" (click)="registerAlerta(precoAlvo.value, medicamento)" >
             Add
+          </a>
+        </div>
+        <div class="ui right floated">
+          <a  (click)="openChart(medicamento.id)">
+            <i class="area chart icon"></i>
           </a>
         </div>
       </div>
@@ -39,3 +44,8 @@
     </div>
   </div>
 <div>
+
+<app-chart [(visible)]="showDialog" 
+    [(lineChartData)]="lineChartData"
+    [(lineChartLabels)]="lineChartLabels" > 
+</app-chart>

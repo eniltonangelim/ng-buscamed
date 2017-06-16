@@ -1,0 +1,19 @@
+<div *ngIf="visible" class="ui segment">
+    <div [@dialog]  >
+            <div class="ui modal transition visible active" style="margin-top: -123.5px; display: block !important;">
+              <ng-content></ng-content>
+              <a *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__close-btn">X</a>
+                <div class="content">
+                  <div class="col-md-6">
+                    <canvas baseChart
+                                [data]="lineChartData"
+                                [labels]="lineChartLabels"
+                                [options]="lineChartOptions"
+                                [chartType]="lineChartType"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+            </div>
+    </div>
+</div>
