@@ -1,7 +1,10 @@
-<div class="ui four column centered grid">
+<div class="ui four column centered grid" >
   <div class="column"  *ngFor="let medicamento of pagedItems" [@flyInOut]="'in'" >
-    <div class="ui card" >
+    <div class="ui card">
       <div class="content">
+        <div (mouseenter)="onMouseEnter(medicamento.id)">
+          <i class="right floated info circle icon"></i>
+        </div>
         <a class="header">{{medicamento.nome}}</a>
         <div class="meta">
           <span class="date">{{medicamento.dosagem}}</span>
@@ -11,9 +14,6 @@
         </div>
       </div>
       <div class="extra content">
-        <a *ngIf="!loggedIn" >
-          <i class="alarm outline icon"></i>
-        </a>
         <div *ngIf="loggedIn" class="ui right labeled left icon input" style="width: 80%">
           <i class="dollar icon"></i>
             <input #precoAlvo type="number" placeholder="Preço alvo" min='0' [@statusToggle]="" >
@@ -47,5 +47,8 @@
 
 <app-chart [(visible)]="showDialog" 
     [(lineChartData)]="lineChartData"
-    [(lineChartLabels)]="lineChartLabels" > 
+    [(lineChartLabels)]="lineChartLabels"
+    [(precoMin)]="precoMin"
+    [(precoMax)]="precoMax"
+     > 
 </app-chart>

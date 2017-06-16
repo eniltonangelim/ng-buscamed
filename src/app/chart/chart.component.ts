@@ -22,7 +22,9 @@ export class ChartComponent implements OnInit {
   @Input() lineChartData: Array<any> ;
   @Input() lineChartLabels:Array<any> ;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  @Input() precoMin: number;
+  @Input() precoMax: number;
+  
   constructor() { }
 
   ngOnInit() {

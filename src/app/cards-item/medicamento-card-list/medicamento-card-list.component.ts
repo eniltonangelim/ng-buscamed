@@ -28,7 +28,10 @@ export class MedicamentoCardListComponent implements OnDestroy {
   private state: string = 'inactive';
   private lineChartData: Array<any>;
   private lineChartLabels:Array<any>;
-  
+  private precoMax: number;
+  private precoMin: number;
+
+
   inscricao: Subscription;
   // pager object
   pager: any = {};
@@ -101,10 +104,16 @@ export class MedicamentoCardListComponent implements OnDestroy {
             this.lineChartLabels.push(element[0])
             this.lineChartData.push(element[1])
           }
+          this.precoMax = Math.max(...this.lineChartData)
+          this.precoMin = Math.min(...this.lineChartData)
           this.showDialog = !this.showDialog;
         }
       }
     )
+  }
+
+  onMouseEnter(id:number){
+
   }
 
   private toggleState(): void {
