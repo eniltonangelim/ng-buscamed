@@ -1,10 +1,14 @@
 <div *ngIf="visible" class="ui segment">
     <div [@dialog]  >
-            <div class="ui modal transition visible active" style="margin-top: -208.5px; display: block !important;">
+            <div class="ui modal transition visible active" style="margin-top: -250.5px; display: block !important;">
               <ng-content></ng-content>
               <a *ngIf="closable"  style="cursor:pointer" (click)="close()" aria-label="Close" class="dialog__close-btn">X</a>
                 <div class="content">
                   <div class="col-md-6">
+                    <h3 class="ui header">
+                      Histórico do preço
+                      <div class="sub header">Valores em Reais</div>
+                    </h3>
                     <canvas baseChart
                                 [data]="lineChartData"
                                 [labels]="lineChartLabels"
